@@ -34,7 +34,7 @@ const handleGetAll = async (req: NextApiRequest, res: NextApiResponse) => {
     } else {
       return res.status(200).json({
         shared: snippets.filter((s) => s.visibility === 'project').length,
-        favorites: snippets.filter((s) => s.content?.favorite).length,
+        favorites: snippets.filter((s) => s.favorite).length,
         private: snippets.filter((s) => s.visibility === 'user').length,
       })
     }

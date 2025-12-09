@@ -23,7 +23,6 @@ export const SnippetSchema = z.object({
   favorite: z.boolean().default(false),
   content: z.object({
     sql: z.string(),
-    favorite: z.boolean(),
     content_id: z.string(),
     schema_version: z.literal('1.0'),
   }),
@@ -86,7 +85,6 @@ const buildSnippet = (
     favorite: false,
     content: {
       sql: content, // Default content
-      favorite: false,
       content_id: uuidv4(),
       schema_version: '1.0',
     },

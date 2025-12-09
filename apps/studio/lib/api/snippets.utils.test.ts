@@ -694,7 +694,6 @@ describe('snippets.utils', () => {
         favorite: false,
         content: {
           sql: 'SELECT * FROM test;',
-          favorite: false,
           content_id: 'content-id',
           schema_version: '1.0',
         },
@@ -734,7 +733,6 @@ describe('snippets.utils', () => {
         favorite: false,
         content: {
           sql: '',
-          favorite: false,
           content_id: 'content-id',
           schema_version: '1.0',
         },
@@ -772,7 +770,6 @@ describe('snippets.utils', () => {
         favorite: false,
         content: {
           sql: 'SELECT * FROM test;',
-          favorite: false,
           content_id: 'content-id',
           schema_version: '1.0',
         },
@@ -808,7 +805,6 @@ describe('snippets.utils', () => {
         favorite: false,
         content: {
           sql: 'SELECT * FROM folder_table;',
-          favorite: false,
           content_id: 'content-id',
           schema_version: '1.0',
         },
@@ -848,7 +844,6 @@ describe('snippets.utils', () => {
         favorite: false,
         content: {
           sql: 'SELECT * FROM table;',
-          favorite: false,
           content_id: 'content-id',
           schema_version: '1.0',
         },
