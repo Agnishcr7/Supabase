@@ -16,17 +16,7 @@ import { IS_PLATFORM } from 'lib/constants'
 import { isAtBottom } from 'lib/helpers'
 import { parseAsArrayOf, parseAsString, useQueryState } from 'nuqs'
 import type { Organization } from 'types'
-import {
-  Card,
-  cn,
-  LoadingLine,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from 'ui'
+import { Card, cn, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from 'ui'
 import {
   LoadingCardView,
   LoadingTableRow,
@@ -106,6 +96,8 @@ export const ProjectList = ({ organization: organization_, rewriteHref }: Projec
   const noResultsFromStatusFilter =
     filterStatus.length > 0 && isSuccessProjects && orgProjects.length === 0
 
+  const noResults = noResultsFromStatusFilter || noResultsFromSearch
+
   const githubConnections = connections?.map((connection) => ({
     id: String(connection.id),
     added_by: {
@@ -162,35 +154,30 @@ export const ProjectList = ({ organization: organization_, rewriteHref }: Projec
       <Card className="flex-1 min-h-0 overflow-y-auto mb-8" onScroll={handleScroll}>
         <Table>
           {/* [Joshen] Ideally we can figure out sticky table headers here */}
-          <TableHeader className="[&>tr>th]:sticky [&>tr>th]:top-0">
+          <TableHeader>
             <TableRow>
-              <TableHead>Project</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Compute</TableHead>
-              <TableHead>Region</TableHead>
-              <TableHead>Created</TableHead>
-            </TableRow>
-            <TableRow className="!border-b-0">
-              <TableCell colSpan={5} className="p-0">
-                <LoadingLine loading={isFetching} />
-              </TableCell>
+              <TableHead className={cn(noResults && 'text-foreground-muted')}>Project</TableHead>
+              <TableHead className={cn(noResults && 'text-foreground-muted')}>Status</TableHead>
+              <TableHead className={cn(noResults && 'text-foreground-muted')}>Compute</TableHead>
+              <TableHead className={cn(noResults && 'text-foreground-muted')}>Region</TableHead>
+              <TableHead className={cn(noResults && 'text-foreground-muted')}>Created</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {noResultsFromStatusFilter ? (
-              <TableRow>
-                <TableCell colSpan={5} className="p-0">
+              <TableRow className="[&>td]:hover:bg-inherit">
+                <TableCell colSpan={5}>
                   <NoFilterResults
                     filterStatus={filterStatus}
                     resetFilterStatus={() => setFilterStatus([])}
-                    className="border-0"
+                    withinTableCell
                   />
                 </TableCell>
               </TableRow>
             ) : noResultsFromSearch ? (
-              <TableRow>
-                <TableCell colSpan={5} className="p-0">
-                  <NoSearchResults searchString={search} className="border-0" />
+              <TableRow className="[&>td]:hover:bg-inherit">
+                <TableCell colSpan={5}>
+                  <NoSearchResults searchString={search} withinTableCell />
                 </TableCell>
               </TableRow>
             ) : (
