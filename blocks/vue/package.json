@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {
-    "h3": "^1.15.4",
+    "h3": "^1.15.5",
     "nuxt": "^4.0.3",
     "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "catalog:"
